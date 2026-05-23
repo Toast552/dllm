@@ -39,6 +39,8 @@ Simple Diffusion Language Modeling
 
 <!-- **[2026/02]** 📄 Checkout our **[`technical report`](assets/dLLM.pdf)**! -->
 
+**[2026/04] 🎯 [`diffu-GRPO`](https://github.com/dllm-reasoning/d1)**: We support diffu-GRPO training for masked diffusion language models, validated on [LLaDA](https://arxiv.org/abs/2502.09992) and [Tiny-A2D](https://huggingface.co/collections/dllm-hub/tiny-a2d) across five reasoning tasks (GSM8K, MATH, Countdown, Sudoku, Code). See [`examples/rl`](/examples/rl#grpo) for training instructions.
+
 **[2026/02] ⚡[`Fast-dLLM`](https://github.com/NVlabs/Fast-dLLM)**: We support accelerated inference and evaluation of  [LLaDA](https://arxiv.org/abs/2502.09992) and [Dream](https://arxiv.org/abs/2508.15487) with [Fast-dLLM](https://arxiv.org/abs/2505.22618) (cache, confidence-threshold decoding). See [`examples/fastdllm`](/examples/fastdllm) for inference / evaluation instructions.
 
 **[2025/12] 🤗[`Tiny-A2D`](https://huggingface.co/collections/dllm-hub/tiny-a2d)**: We released a collection of **SOTA** small (0.5B/0.6B) diffusion models adapted from AR models, with fully open recipes for converting **ANY** AR model (e.g., Qwen, LLaMA, and GPT-2) into a diffusion model. See [`examples/a2d`](/examples/a2d) for training / inference / evaluation instructions.
@@ -58,6 +60,8 @@ Simple Diffusion Language Modeling
 
 ## Features
 - [`examples/llada`](/examples/llada): Pretraining, finetuning and evaluating [LLaDA](https://arxiv.org/abs/2502.09992) / [LLaDA-MoE](https://arxiv.org/abs/2509.24389).
+- [`examples/llada2`](/examples/llada2): Inference of [LLaDA2.0](https://arxiv.org/abs/2512.15745).
+- [`examples/llada21`](/examples/llada21): Inference of [LLaDA2.1](https://arxiv.org/abs/2602.08676).
 - [`examples/dream`](/examples/dream): Pretraining, finetuning and evaluating [Dream](https://arxiv.org/abs/2508.15487).
 - [`examples/a2d`](/examples/a2d): Finetuning any autoregressive model to generate text with [masked diffusion](https://arxiv.org/abs/2406.07524) / [block diffusion](https://arxiv.org/abs/2503.09573).
 - [`examples/bert`](/examples/bert): Finetuning any [BERT](https://arxiv.org/abs/1810.04805) to be lightweight Chatbots.
@@ -84,6 +88,7 @@ Simple Diffusion Language Modeling
 
    </details> -->
 - [`examples/fastdllm`](/examples/fastdllm): Inferencing and evaluating [LLaDA](https://arxiv.org/abs/2502.09992) and [Dream](https://arxiv.org/abs/2508.15487) with [Fast-dLLM](https://arxiv.org/abs/2505.22618) (cache, confidence-threshold decoding, and beyond).
+- [`examples/rl`](/examples/rl): [GRPO](https://github.com/dllm-reasoning/d1) training for [LLaDA](https://arxiv.org/abs/2502.09992) and [Tiny-A2D](https://huggingface.co/collections/dllm-hub/tiny-a2d) diffusion language models across reasoning tasks (GSM8K, MATH, Countdown, Sudoku, Code).
 - More upcoming.
 
 
@@ -136,31 +141,39 @@ dllm
 │   └── trainers
 ├── data
 ├── pipelines              # Application-specific training & inference pipelines
-|   ├── bert
+│   ├── a2d
+│   ├── bert
 │   ├── dream
 │   ├── editflow
 │   ├── fastdllm
-│   └── llada
-│       ├── models         # Model architecture and configs 
-│       ├── sampler.py     # Inference module
-│       ├── trainer.py     # Training module
-│       └── eval.py        # Evaluation module
+│   ├── llada
+│   │   ├── models         # Model architecture and configs 
+│   │   ├── sampler.py     # Inference module
+│   │   ├── trainer.py     # Training module
+│   │   └── eval.py        # Evaluation module
+│   ├── llada2
+│   ├── llada21
+│   └── rl
 ├── tools
 └── utils
 
 # entry points for training / sampling
 examples
+├── a2d
 ├── bert
 ├── dream
 ├── editflow
 ├── fastdllm
-└── llada
-    ├── chat.py            # Interactive inference example
-    ├── sample.py          # Inference example
-    ├── pt.py              # Pretraining example
-    ├── README.md          # Documentation (you are here)
-    ├── sft.py             # Supervised finetuning example
-    └── eval.sh            # Evaluation script
+├── llada
+│   ├── chat.py            # Interactive inference example
+│   ├── sample.py          # Inference example
+│   ├── pt.py              # Pretraining example
+│   ├── README.md          # Documentation
+│   ├── sft.py             # Supervised finetuning example
+│   └── eval.sh            # Evaluation script
+├── llada2
+├── llada21
+└── rl
 ```
 
 ## Training
